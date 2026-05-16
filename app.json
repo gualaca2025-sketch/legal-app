@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Legal-App",
+    "slug": "jose-maria-arauz-barraza",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "arauzbarraza",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#00897B"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.arauzbarraza.consultorio",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "remote-notification"
+        ],
+        "NSNotificationUsageDescription": "Permite enviar recordatorios de citas y notificaciones importantes.",
+        "NSPhotoLibraryUsageDescription": "Permite guardar documentos PDF en su galería.",
+        "NSCalendarsUsageDescription": "Permite agendar citas en su calendario.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#00897B"
+      },
+      "package": "com.arauzbarraza.consultorio"
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#00897B",
+          "iosDisplayInForeground": true
+        }
+      ]
+    ]
+  }
+}

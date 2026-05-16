@@ -1,0 +1,46 @@
+export const COLORS = {
+  primary: '#00897B',
+  primaryLight: '#4EBAAA',
+  primaryDark: '#005B4F',
+  secondary: '#26C6DA',
+  secondaryLight: '#6FF9FF',
+  accent: '#FF6F00',
+  background: '#F5F7FA',
+  surface: '#FFFFFF',
+  text: '#212121',
+  textSecondary: '#757575',
+  textLight: '#FFFFFF',
+  border: '#E0E0E0',
+  error: '#D32F2F',
+  success: '#388E3C',
+  warning: '#F57C00',
+  info: '#1976D2',
+  disabled: '#BDBDBD',
+  cardShadow: '#00000020',
+  headerBg: '#00897B',
+  tabActive: '#26C6DA',
+  tabInactive: '#9E9E9E',
+  gradientStart: '#00897B',
+  gradientEnd: '#4EBAAA',
+};
+
+export const FONTS = {
+  regular: 'System',
+  medium: 'System',
+  bold: 'System',
+};
+
+export const SIZES = {
+  xs: 10,
+  sm: 12,
+  md: 14,
+  lg: 16,
+  xl: 18,
+  xxl: 22,
+  xxxl: 28,
+  title: 32,
+  padding: 16,
+  radius: 12,
+  radiusSm: 8,
+  radiusLg: 20,
+};
