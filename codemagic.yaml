@@ -8,26 +8,30 @@ workflows:
         XCODE_SCHEME: "App"
       ios:
         xcode: latest
-      flutter: inactive
     scripts:
-      - npm ci
-      - npx expo export --platform web
-      - npx cap sync ios
-      - cd ios && xcodebuild -workspace App/App.xcworkspace \
-          -scheme App \
-          -sdk iphoneos \
-          -configuration Release \
-          -archivePath $CM_BUILD_DIR/App.xcarchive \
-          archive \
-          CODE_SIGN_STYLE=Manual \
-          CODE_SIGN_IDENTITY="Apple Development" \
-          PROVISIONING_PROFILE_SPECIFIER=""
-      - xcodebuild -exportArchive \
-          -archivePath $CM_BUILD_DIR/App.xcarchive \
-          -exportOptionsPlist $CM_BUILD_DIR/export_options.plist \
-          -exportPath $CM_BUILD_DIR/ipa
+      - name: Install dependencies
+        script: npm ci
+      - name: Build web export
+        script: npx expo export --platform web
+      - name: Sync Capacitor
+        script: npx cap sync ios
+      - name: Build IPA
+        script: |
+          cd ios
+          xcodebuild -workspace App/App.xcworkspace \
+            -scheme App \
+            -sdk iphoneos \
+            -configuration Release \
+            -archivePath $CM_BUILD_DIR/App.xcarchive \
+            archive \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Development" \
+            PROVISIONING_PROFILE_SPECIFIER=""
+          xcodebuild -exportArchive \
+            -archivePath $CM_BUILD_DIR/App.xcarchive \
+            -exportOptionsPlist $CM_BUILD_DIR/export_options.plist \
+            -exportPath $CM_BUILD_DIR/ipa
     artifacts:
       - $CM_BUILD_DIR/ipa/*.ipa
     publishing:
       email: []
-      scripts: []
