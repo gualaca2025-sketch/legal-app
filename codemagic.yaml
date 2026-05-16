@@ -4,6 +4,8 @@ workflows:
     max_build_duration: 60
     environment:
       xcode: latest
+      groups:
+        - apple
     scripts:
       - name: Install dependencies
         script: npm ci
