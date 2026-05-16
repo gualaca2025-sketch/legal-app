@@ -3,11 +3,7 @@ workflows:
     name: Legal-App iOS
     max_build_duration: 60
     environment:
-      vars:
-        XCODE_WORKSPACE: "ios/App/App.xcodeproj/project.xcworkspace"
-        XCODE_SCHEME: "App"
-      ios:
-        xcode: latest
+      xcode: latest
     scripts:
       - name: Install dependencies
         script: npm ci
@@ -34,4 +30,5 @@ workflows:
     artifacts:
       - $CM_BUILD_DIR/ipa/*.ipa
     publishing:
-      email: []
+      email:
+        recipients: []
