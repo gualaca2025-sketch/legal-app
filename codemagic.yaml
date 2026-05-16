@@ -13,6 +13,13 @@ workflows:
         script: npx expo export --platform web
       - name: Sync Capacitor
         script: npx cap sync ios
+      - name: Configure signing
+        script: |
+          echo "Checking Apple ID credentials..."
+          xcrun notarytool store-credentials "AC_PASSWORD" \
+            --apple-id $APPLE_ID \
+            --team-id "" \
+            --password $APPLE_ID_PASSWORD 2>/dev/null || true
       - name: Build IPA
         script: |
           cd ios
@@ -21,13 +28,14 @@ workflows:
             -sdk iphoneos \
             -configuration Release \
             -archivePath $CM_BUILD_DIR/App.xcarchive \
+            -allowProvisioningUpdates \
             archive \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="Apple Development" \
-            PROVISIONING_PROFILE_SPECIFIER=""
+            CODE_SIGN_STYLE=Automatic \
+            DEVELOPMENT_TEAM=""
           xcodebuild -exportArchive \
             -archivePath $CM_BUILD_DIR/App.xcarchive \
             -exportOptionsPlist $CM_BUILD_DIR/export_options.plist \
+            -allowProvisioningUpdates \
             -exportPath $CM_BUILD_DIR/ipa
     artifacts:
       - $CM_BUILD_DIR/ipa/*.ipa
