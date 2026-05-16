@@ -16,7 +16,7 @@ workflows:
       - name: Build IPA
         script: |
           cd ios
-          xcodebuild -workspace App/App.xcworkspace \
+          xcodebuild -project App/App.xcodeproj \
             -scheme App \
             -sdk iphoneos \
             -configuration Release \
