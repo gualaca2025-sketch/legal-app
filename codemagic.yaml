@@ -31,6 +31,3 @@ workflows:
             -exportPath $CM_BUILD_DIR/ipa
     artifacts:
       - $CM_BUILD_DIR/ipa/*.ipa
-    publishing:
-      email:
-        recipients: []
