@@ -25,9 +25,9 @@ workflows:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGN_STYLE=Manual
-          xcodebuild -exportArchive \
-            -archivePath $CM_BUILD_DIR/App.xcarchive \
-            -exportOptionsPlist $CM_BUILD_DIR/export_options.plist \
-            -exportPath $CM_BUILD_DIR/ipa
+          mkdir -p $CM_BUILD_DIR/ipa/Payload
+          cp -r $CM_BUILD_DIR/App.xcarchive/Products/Applications/App.app $CM_BUILD_DIR/ipa/Payload/
+          cd $CM_BUILD_DIR/ipa
+          zip -r App.ipa Payload/
     artifacts:
-      - $CM_BUILD_DIR/ipa/*.ipa
+      - $CM_BUILD_DIR/ipa/App.ipa
