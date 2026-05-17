@@ -13,7 +13,7 @@ workflows:
         script: npx expo export --platform web
       - name: Sync Capacitor
         script: npx cap sync ios
-      - name: Build IPA
+      - name: Build IPA (unsigned - for Sideloadly)
         script: |
           cd ios
           xcodebuild -project App/App.xcodeproj \
@@ -21,14 +21,13 @@ workflows:
             -sdk iphoneos \
             -configuration Release \
             -archivePath $CM_BUILD_DIR/App.xcarchive \
-            -allowProvisioningUpdates \
             archive \
-            CODE_SIGN_STYLE=Automatic \
-            DEVELOPMENT_TEAM=640199958
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGN_STYLE=Manual
           xcodebuild -exportArchive \
             -archivePath $CM_BUILD_DIR/App.xcarchive \
             -exportOptionsPlist $CM_BUILD_DIR/export_options.plist \
-            -allowProvisioningUpdates \
             -exportPath $CM_BUILD_DIR/ipa
     artifacts:
       - $CM_BUILD_DIR/ipa/*.ipa
